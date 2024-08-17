@@ -16,6 +16,7 @@ interface ColorCardProps {
   setAlert: (message: string) => void;
   toggleLock: () => void;
   handleDelete: (color: string) => void;
+  className: string;
   // color: [];
 }
 
@@ -27,6 +28,7 @@ const ColorCard = ({
   setAlert,
   toggleLock,
   handleDelete,
+  className,
 }: ColorCardProps) => {
   const [show, setShow] = useState(false);
 
@@ -39,10 +41,9 @@ const ColorCard = ({
   };
 
   const controls = useDragControls();
-  const x = useMotionValue(0);
   return (
     <div
-      className={`px-4 py-8 min-h-[80vh] max-md:min-h-[60vh] max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end `}
+      className={className}
       // value={value}
       // dragListener={false}
       // dragControls={controls}
@@ -67,14 +68,14 @@ const ColorCard = ({
           className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"
           onClick={() => handleDelete(value)}
         />
-        <InformationCircleIcon
+        {/* <InformationCircleIcon
           aria-hidden="true"
           className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"
           onPointerDown={(e) => {
             console.log(e);
             controls.start(e);
           }}
-        />
+        /> */}
         <DocumentDuplicateIcon
           aria-hidden="true"
           className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"

@@ -14,42 +14,6 @@ import {
 import { Color } from "../utils/interfaces";
 
 const ColorGen = () => {
-  //   {
-  //     id: 1,
-  //     name: "a",
-  //     value: "FF6B6B",
-  //     contrast: "#000000",
-  //     locked: false,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "b",
-  //     value: "C33C54",
-  //     contrast: "#000000",
-  //     locked: false,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "c",
-  //     value: "FF6B6B",
-  //     contrast: "#000000",
-  //     locked: false,
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "d",
-  //     value: "FFCC33",
-  //     contrast: "#000000",
-  //     locked: false,
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "e",
-  //     value: "0099FF",
-  //     contrast: "#000000",
-  //     locked: false,
-  //   },
-  // ]);
   const [color, setColor] = useState<Color[]>(INITIAL_COLORS);
   const [alert, setAlert] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -107,10 +71,14 @@ const ColorGen = () => {
         axis="x"
         values={color}
         onReorder={setColor}
-        className="flex items-center flex-wrap mb-4 gap-0"
+        className="flex max-md:flex-col items-center flex-wrap mb-4 gap-0"
       >
         {color.map((item, index) => (
-          <Reorder.Item key={item.name} value={item} className="flex-1">
+          <Reorder.Item
+            key={item.name}
+            value={item}
+            className="max-md:h-[10vh] max-md:w-[100%]  flex-1"
+          >
             <ColorCard
               key={`${item.name}${item.id}`}
               value={item.value}
@@ -121,6 +89,7 @@ const ColorGen = () => {
               toggleLock={() => setColor(toggleLock(color, index))}
               // handlePointerDown={handlePointerDown}
               handleDelete={handleDelete}
+              className="px-4 py-8 min-h-[75vh]  max-md:min-h-[30vh]  max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end"
             />
           </Reorder.Item>
         ))}
@@ -128,13 +97,12 @@ const ColorGen = () => {
 
       <div className="flex gap-4 justify-center">
         <button
-          className="flex item-center justify-center gap-1 cursor-pointer transition-all bg-blue-200 text-blue-600 px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px]
-active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+          className="flex items-center justify-start gap-1 cursor-pointer transition-all bg-blue-200 text-blue-600 px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:brightness-90"
           onClick={handlePlus}
           tabIndex={-1}
         >
-          <PlusCircleIcon className="w-6 h-6 hover:rotate-90 duration-300" />
-          <span> Plus </span>
+          <PlusCircleIcon className=" w-6 h-6 hover:rotate-90 duration-300" />
+          <span className=""> Plus </span>
         </button>
         <button
           className="

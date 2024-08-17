@@ -17,7 +17,6 @@ import {
   Bars3Icon,
   ChartPieIcon,
   CursorArrowRaysIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
@@ -26,13 +25,13 @@ import { Link } from "react-router-dom";
 
 const products = [
   {
-    name: "Palett Generator",
-    description: "Get a pallet",
+    name: "Explore Palette",
+    description: "Speak directly to your customers",
     href: "/colorPallet",
     icon: ChartPieIcon,
   },
   {
-    name: "Explore Pallet",
+    name: "Create Palette",
     description: "Speak directly to your customers",
     href: "#",
     icon: CursorArrowRaysIcon,
@@ -97,7 +96,11 @@ export default function Example() {
                     <div className="flex-auto">
                       <a
                         href={item.href}
-                        className="block font-semibold text-gray-900"
+                        className={`block font-semibold ${
+                          item.name === "Create Palette"
+                            ? "text-gray-400 cursor-default"
+                            : "text-gray-900"
+                        } `}
                       >
                         {item.name}
                         <span className="absolute inset-0" />
@@ -110,7 +113,10 @@ export default function Example() {
             </PopoverPanel>
           </Popover>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a
+            href="#"
+            className="text-sm font-semibold leading-6 text-gray-400 cursor-default"
+          >
             Features
           </a>
         </PopoverGroup>
@@ -123,14 +129,9 @@ export default function Example() {
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                alt=""
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              />
-            </a>
+            <Link to="/" className="-m-1.5 p-1.5">
+              <span className="font-bold text-blue-600">ColGen</span>
+            </Link>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
@@ -145,7 +146,7 @@ export default function Example() {
               <div className="space-y-2 py-6">
                 <Disclosure as="div" className="-mx-3">
                   <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                    Product
+                    Tools
                     <ChevronDownIcon
                       aria-hidden="true"
                       className="h-5 w-5 flex-none group-data-[open]:rotate-180"
@@ -157,7 +158,11 @@ export default function Example() {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                        className={`block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50 ${
+                          item.name === "Create Palette"
+                            ? "text-gray-400 cursor-default"
+                            : "text-gray-900"
+                        }`}
                       >
                         {item.name}
                       </DisclosureButton>
@@ -166,23 +171,9 @@ export default function Example() {
                 </Disclosure>
                 <a
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-400 hover:bg-gray-50"
                 >
                   Features
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Marketplace
-                </a>
-              </div>
-              <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
                 </a>
               </div>
             </div>

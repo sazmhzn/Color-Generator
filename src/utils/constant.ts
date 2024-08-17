@@ -46,4 +46,12 @@ export const ALERT_TIMEOUT = 2000;
 // constants.ts
 export const COLOR_API_ENDPOINT = "https://www.thecolorapi.com/id?hex=";
 export const COLOR_SCHEME_API_ENDPOINT =
-  "https://www.thecolorapi.com/scheme?&count=6&hex=";
+  "https://www.thecolorapi.com/scheme?hex=";
+
+export const MODES = [
+  { name: "monochrome", active: true },
+  { name: "monochrome-dark", active: false },
+  { name: "monochrome-light", active: false },
+  { name: "analogic", active: false },
+  { name: "complement", active: false },
+];

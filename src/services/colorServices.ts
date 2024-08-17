@@ -23,7 +23,7 @@ export const getColorScheme = (hex: string, mode: string) => {
     axios
       .get(`${COLOR_SCHEME_API_ENDPOINT}${hex}&mode=${mode}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         resolve(response.data);
       })
       .catch((error) => {
