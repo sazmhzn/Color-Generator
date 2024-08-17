@@ -50,7 +50,13 @@ const ColorGen = () => {
     );
     setColor((prev) => [
       ...prev,
-      { id: prev.length + 1, name, value: newColorValue, contrast },
+      {
+        id: prev.length + 1,
+        name,
+        value: newColorValue,
+        contrast,
+        locked: false,
+      },
     ]);
   };
 

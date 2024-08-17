@@ -17,7 +17,7 @@ const ColorGroup = ({ colors, setAlert, toggleLock }: ColorGroupProps) => {
       {colors.map((item, index) => (
         <ColorCard
           key={index}
-          color={item.color}
+          value={item.color} // Use 'value' instead of 'color'
           name={item.name}
           contrast={item.contrast}
           locked={item.locked}

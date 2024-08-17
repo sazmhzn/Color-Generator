@@ -7,8 +7,18 @@ import Alert from "../components/Alert";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Heading from "../components/Heading";
 
+interface Color {
+  hex: { value: string };
+  contrast: { value: string };
+}
+
+interface Scheme {
+  baseColor: string;
+  colors: Color[];
+}
+
 const ColorSheme = () => {
-  const [colorScheme, setColorScheme] = useState([]);
+  const [colorScheme, setColorScheme] = useState<Scheme[]>([]);
   const [tabs, setTabs] = useState(MODES);
   const [selectedTab, setSelectedTab] = useState(MODES[0].name);
   const [isLoading, setIsLoading] = useState(false);
@@ -58,7 +68,7 @@ const ColorSheme = () => {
     );
   };
 
-  const handleCopy = (value) => {
+  const handleCopy = (value: string) => {
     navigator.clipboard.writeText(value);
     setAlert("Copied to clipboard: " + value);
     setTimeout(() => {
@@ -96,10 +106,10 @@ const ColorSheme = () => {
       <div className="flex min-h-[100vh] flex-wrap gap-4">
         <div className="flex flex-wrap min-h-40 w-[100vw] gap-4 overflow-hidden rounded-lg ">
           {colorScheme &&
-            colorScheme.map((item) => {
+            colorScheme.map((scheme) => {
               return (
                 <div className="flex flex-wrap w-[29%] rounded-md bg-neutral-900">
-                  {item.colors.map((item) => {
+                  {scheme.colors.map((item) => {
                     return (
                       <div
                         className="flex-1 flex item-center justify-center group"
