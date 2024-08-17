@@ -1,5 +1,3 @@
-import React from "react";
-
 const Alert = ({ alert }: { alert: string }) => {
   return (
     <div

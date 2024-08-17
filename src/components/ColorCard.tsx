@@ -1,11 +1,9 @@
 import {
   DocumentDuplicateIcon,
-  InformationCircleIcon,
   LockOpenIcon,
   LockClosedIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { useDragControls, useMotionValue } from "framer-motion";
 import { useState } from "react";
 
 interface ColorCardProps {
@@ -40,7 +38,6 @@ const ColorCard = ({
     }, 2000);
   };
 
-  const controls = useDragControls();
   return (
     <div
       className={className}

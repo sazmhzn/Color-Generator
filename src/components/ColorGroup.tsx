@@ -9,19 +9,29 @@ interface ColorGroupProps {
   }[];
   setAlert: (message: string) => void;
   toggleLock: (index: number) => void;
+  handleDelete: (color: string) => void;
+  className: string;
 }
 
-const ColorGroup = ({ colors, setAlert, toggleLock }: ColorGroupProps) => {
+const ColorGroup = ({
+  colors,
+  setAlert,
+  toggleLock,
+  handleDelete,
+  className,
+}: ColorGroupProps) => {
   return (
-    <div className="flex items-center flex-wrap gap-4">
+    <div className={`flex items-center flex-wrap gap-4`}>
       {colors.map((item, index) => (
         <ColorCard
           key={index}
-          value={item.color} // Use 'value' instead of 'color'
+          value={item.color}
           name={item.name}
           contrast={item.contrast}
           locked={item.locked}
           setAlert={setAlert}
+          handleDelete={handleDelete}
+          className={className}
           toggleLock={() => toggleLock(index)} // Ensure proper index handling
         />
       ))}

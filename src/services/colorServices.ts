@@ -18,12 +18,10 @@ export const getColorByHex = (hex: string) => {
 };
 
 export const getColorScheme = (hex: string, mode: string) => {
-  console.log(hex, "HEx passed in scheme");
   return new Promise((resolve, reject) => {
     axios
       .get(`${COLOR_SCHEME_API_ENDPOINT}${hex}&mode=${mode}`)
       .then((response) => {
-        // console.log(response.data);
         resolve(response.data);
       })
       .catch((error) => {

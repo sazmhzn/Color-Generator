@@ -7,14 +7,16 @@ import Alert from "../components/Alert";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Heading from "../components/Heading";
 
-interface Color {
+interface Colors {
   hex: { value: string };
   contrast: { value: string };
 }
-
+interface ColorScheme {
+  colors: Colors[];
+}
 interface Scheme {
   baseColor: string;
-  colors: Color[];
+  colors: Colors[];
 }
 
 const ColorSheme = () => {
@@ -38,10 +40,10 @@ const ColorSheme = () => {
         for (let i = 0; i < 9; i++) {
           // Generating 3 different schemes
           const newColorValue = generateRandomColor();
-          const scheme = await getColorScheme(
+          const scheme = (await getColorScheme(
             newColorValue.slice(1),
             selectedTab
-          );
+          )) as ColorScheme;
           schemes.push({ baseColor: newColorValue, colors: scheme.colors });
         }
 

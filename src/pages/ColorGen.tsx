@@ -66,7 +66,9 @@ const ColorGen = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     generateColors();
+    setIsLoading(false);
   }, []);
 
   if (isLoading) return <Loading />;

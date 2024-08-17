@@ -9,3 +9,7 @@ export interface Color {
 export interface AlertProps {
   alert: string;
 }
+
+export interface ColorScheme {
+  colors: Color[];
+}

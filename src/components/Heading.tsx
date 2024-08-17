@@ -1,5 +1,3 @@
-import React from "react";
-
 const Heading = () => {
   return (
     <header className="text-center min-h-40 flex flex-col items-center justify-center">

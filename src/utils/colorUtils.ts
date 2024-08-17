@@ -1,5 +1,6 @@
 import axios from "axios";
 import { COLOR_API_ENDPOINT } from "./constant";
+import { Color } from "./interfaces";
 
 // Function to generate a random color
 export const generateRandomColor = (): string => {
