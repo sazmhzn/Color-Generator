@@ -114,14 +114,14 @@ const ColorSheme = () => {
                   {scheme.colors.map((item) => {
                     return (
                       <div
-                        className="flex-1 flex item-center justify-center group"
+                        className="flex-1 flex items-center  justify-center group"
                         style={{
                           backgroundColor: item.hex.value,
                           color: item.contrast.value,
                         }}
                       >
-                        <span
-                          className="hidden group-hover:block p-4 text-xs "
+                        <p
+                          className="hidden h-fit group-hover:block text-xs "
                           style={{
                             transition: "opacity 0.2s ease-in-out",
                           }}
@@ -133,7 +133,7 @@ const ColorSheme = () => {
                           ) : (
                             item.hex.value.slice(1)
                           )}
-                        </span>
+                        </p>
                       </div>
                     );
                   })}

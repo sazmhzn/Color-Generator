@@ -52,7 +52,7 @@ const ColorCard = ({
       onMouseLeave={() => setShow(false)}
     >
       <div
-        className="mb-12 rounded-md p-2 flex flex-col gap-4 items-end"
+        className="mb-12 max-md:mb-2  max-sm:mb-2 rounded-md p-2 flex max-sm:flex-row max-md:flex-row  flex-col gap-4 max-sm:gap-2 items-end"
         style={{
           backgroundColor: "rgba(255,255,255,0.2)",
           visibility: show ? "visible" : "hidden",
@@ -100,7 +100,7 @@ const ColorCard = ({
       </div>
       <div className={`flex flex-col items-center`} style={{ color: contrast }}>
         <h1
-          className={`text-4xl mb-2 font-bold max-md:text-2xl max-sm:text-2xl`}
+          className={`text-4xl mb-2 max-sm:mb-0 font-bold max-md:text-2xl max-sm:text-2xl`}
         >
           {value.slice(1)}
         </h1>

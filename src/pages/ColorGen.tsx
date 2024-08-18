@@ -12,12 +12,14 @@ import {
   toggleLock,
 } from "../utils/colorUtils";
 import { Color } from "../utils/interfaces";
+import { useMediaQuery } from "../services/colorServices";
 
 const ColorGen = () => {
   const [color, setColor] = useState<Color[]>(INITIAL_COLORS);
   const [alert, setAlert] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const cache = CACHE_INITIAL_STATE;
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const generateColors = async () => {
     // setIsLoading(true);
@@ -61,7 +63,6 @@ const ColorGen = () => {
   };
 
   const handleDelete = (colorToDelete: string) => {
-    console.log("delete", colorToDelete);
     setColor((prev) => prev.filter((item) => item.value !== colorToDelete));
   };
 
@@ -76,7 +77,7 @@ const ColorGen = () => {
   return (
     <div className="p-2">
       <Reorder.Group
-        axis="x"
+        axis={isMobile ? "y" : "x"}
         values={color}
         onReorder={setColor}
         className="flex max-md:flex-col items-center flex-wrap mb-4 gap-0"
@@ -97,7 +98,7 @@ const ColorGen = () => {
               toggleLock={() => setColor(toggleLock(color, index))}
               // handlePointerDown={handlePointerDown}
               handleDelete={handleDelete}
-              className="px-4 py-8 min-h-[75vh]  max-md:min-h-[30vh]  max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end"
+              className="px-4 py-8 max-sm:py-4 min-h-[75vh] max-md:py-4  max-md:min-h-[20vh]  max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end"
             />
           </Reorder.Item>
         ))}

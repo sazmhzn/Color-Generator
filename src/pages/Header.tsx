@@ -94,8 +94,8 @@ export default function Example() {
                       />
                     </div>
                     <div className="flex-auto">
-                      <a
-                        href={item.href}
+                      <Link
+                        to={item.href}
                         className={`block font-semibold ${
                           item.name === "Create Palette"
                             ? "text-gray-400 cursor-default"
@@ -104,7 +104,7 @@ export default function Example() {
                       >
                         {item.name}
                         <span className="absolute inset-0" />
-                      </a>
+                      </Link>
                       <p className="mt-1 text-gray-600">{item.description}</p>
                     </div>
                   </Link>
@@ -154,10 +154,10 @@ export default function Example() {
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
                     {[...products].map((item) => (
-                      <DisclosureButton
+                      <Link
                         key={item.name}
-                        as="a"
-                        href={item.href}
+                        // as="a"
+                        to={item.href}
                         className={`block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50 ${
                           item.name === "Create Palette"
                             ? "text-gray-400 cursor-default"
@@ -165,7 +165,7 @@ export default function Example() {
                         }`}
                       >
                         {item.name}
-                      </DisclosureButton>
+                      </Link>
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
