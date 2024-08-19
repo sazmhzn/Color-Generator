@@ -75,7 +75,7 @@ const ColorGen = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="p-2">
+    <section className="p-2">
       <Reorder.Group
         axis={isMobile ? "y" : "x"}
         values={color}
@@ -111,7 +111,7 @@ const ColorGen = () => {
           tabIndex={-1}
         >
           <PlusCircleIcon className=" w-6 h-6 hover:rotate-90 duration-300" />
-          <span className=""> Plus </span>
+          <span> Plus </span>
         </button>
         <button
           className="
@@ -126,7 +126,7 @@ active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
         </button>
       </div>
       {alert && <Alert alert={alert} />}
-    </div>
+    </section>
   );
 };
 

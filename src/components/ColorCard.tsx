@@ -50,6 +50,8 @@ const ColorCard = ({
       }}
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
+      aria-label={`Color card ${name}`}
+      role="region"
     >
       <div
         className="mb-12 max-md:mb-2  max-sm:mb-2 rounded-md p-2 flex max-sm:flex-row max-md:flex-row  flex-col gap-4 max-sm:gap-2 items-end"
@@ -59,31 +61,35 @@ const ColorCard = ({
           opacity: show ? 1 : 0,
           transition: "opacity 0.2s ease-in-out",
         }}
+        aria-hidden={!show}
       >
-        <XMarkIcon
-          aria-hidden="true"
-          className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"
+        <button
+          aria-label="Delete color"
           onClick={() => handleDelete(value)}
-        />
-        {/* <InformationCircleIcon
-          aria-hidden="true"
-          className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"
-          onPointerDown={(e) => {
-            console.log(e);
-            controls.start(e);
-          }}
-        /> */}
-        <DocumentDuplicateIcon
-          aria-hidden="true"
-          className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"
+          className="focus:outline-none"
+        >
+          <XMarkIcon
+            aria-hidden="true"
+            className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"
+          />
+        </button>
+        <button
+          aria-label="Copy color code"
           onClick={handleCopy}
-        />
+          className="focus:outline-none"
+        >
+          <DocumentDuplicateIcon
+            aria-hidden="true"
+            className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"
+          />
+        </button>
 
         <button
           onClick={() => {
             toggleLock();
             setShow(!show);
           }}
+          aria-label={locked ? "Unlock color" : "Lock color"}
         >
           {locked ? (
             <LockClosedIcon
@@ -98,7 +104,11 @@ const ColorCard = ({
           )}
         </button>
       </div>
-      <div className={`flex flex-col items-center`} style={{ color: contrast }}>
+      <div
+        className={`flex flex-col items-center`}
+        style={{ color: contrast }}
+        role="contentinfo"
+      >
         <h1
           className={`text-4xl mb-2 max-sm:mb-0 font-bold max-md:text-2xl max-sm:text-2xl`}
         >
