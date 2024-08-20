@@ -3,14 +3,19 @@ import {
   LockOpenIcon,
   LockClosedIcon,
   XMarkIcon,
+  PencilSquareIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import { generateColorName } from "../utils/colorUtils";
+import { Color } from "../utils/interfaces";
 
 interface ColorCardProps {
   value: string;
   name: string;
   contrast?: string;
   locked?: boolean;
+  color: Color[];
+  setColor: () => void;
   setAlert: (message: string) => void;
   toggleLock: () => void;
   handleDelete: (color: string) => void;
@@ -23,12 +28,16 @@ const ColorCard = ({
   name,
   contrast = "#000000",
   locked = false,
+  setColor,
+  color,
   setAlert,
   toggleLock,
   handleDelete,
   className,
 }: ColorCardProps) => {
   const [show, setShow] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [tempValue, setTempValue] = useState(value);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(value);
@@ -36,6 +45,28 @@ const ColorCard = ({
     setTimeout(() => {
       setAlert("");
     }, 2000);
+  };
+
+  const handleEdit = async () => {
+    if (isEditing) {
+      // User is saving the edit
+      const { name, contrast } = await generateColorName(
+        tempValue.slice(1),
+        {}
+      );
+      const updatedColors = color.map((c) =>
+        c.value === value
+          ? { ...c, value: tempValue.slice(), name, contrast }
+          : c
+      );
+      setColor(updatedColors);
+      console.log(color);
+    }
+    setIsEditing(!isEditing);
+  };
+
+  const handleChange = (e) => {
+    setTempValue(e.target.value);
   };
 
   return (
@@ -69,6 +100,16 @@ const ColorCard = ({
           className="focus:outline-none"
         >
           <XMarkIcon
+            aria-hidden="true"
+            className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"
+          />
+        </button>
+        <button
+          aria-label="Delete color"
+          onClick={handleEdit}
+          className="focus:outline-none"
+        >
+          <PencilSquareIcon
             aria-hidden="true"
             className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"
           />
@@ -109,11 +150,22 @@ const ColorCard = ({
         style={{ color: contrast }}
         role="contentinfo"
       >
-        <h1
-          className={`text-4xl mb-2 max-sm:mb-0 font-bold max-md:text-2xl max-sm:text-2xl`}
-        >
-          {value.slice(1)}
-        </h1>
+        {" "}
+        {isEditing ? (
+          <input
+            type="text"
+            value={tempValue}
+            onChange={handleChange}
+            className="border-b-2 bg-transparent w-40 text-3xl mb-2 max-sm:mb-0 font-bold max-md:text-2xl max-sm:text-2xl text-center"
+            style={{ color: contrast }}
+          />
+        ) : (
+          <h1
+            className={`text-4xl mb-2 max-sm:mb-0 font-bold max-md:text-2xl max-sm:text-2xl`}
+          >
+            {value.slice(1)}
+          </h1>
+        )}
         <p className={`text-sm font-medium text-center w-fit max-sm:text-sm`}>
           {name}
         </p>

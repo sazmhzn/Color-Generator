@@ -96,7 +96,8 @@ const ColorGen = () => {
               locked={item.locked}
               setAlert={setAlert}
               toggleLock={() => setColor(toggleLock(color, index))}
-              // handlePointerDown={handlePointerDown}
+              setColor={setColor}
+              color={color}
               handleDelete={handleDelete}
               className="px-4 py-8 max-sm:py-4 min-h-[75vh] max-md:py-4  max-md:min-h-[20vh]  max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end"
             />
