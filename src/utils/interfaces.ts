@@ -10,6 +10,6 @@ export interface AlertProps {
   alert: string;
 }
 
-export interface ColorScheme {
+export interface ColorSheme {
   colors: Color[];
 }
