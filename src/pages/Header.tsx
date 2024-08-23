@@ -31,7 +31,7 @@ const products = [
     icon: ChartPieIcon,
   },
   {
-    name: "Create Palette",
+    name: "Search Color",
     description: "Speak directly to your customers",
     href: "/createPallet",
     icon: CursorArrowRaysIcon,
