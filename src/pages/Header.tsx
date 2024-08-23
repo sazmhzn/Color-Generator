@@ -33,7 +33,7 @@ const products = [
   {
     name: "Create Palette",
     description: "Speak directly to your customers",
-    href: "#",
+    href: "/createPallet",
     icon: CursorArrowRaysIcon,
   },
 ];
@@ -96,11 +96,7 @@ export default function Example() {
                     <div className="flex-auto">
                       <Link
                         to={item.href}
-                        className={`block font-semibold ${
-                          item.name === "Create Palette"
-                            ? "text-gray-400 cursor-default"
-                            : "text-gray-900"
-                        } `}
+                        className={`block font-semibold text-gray-900`}
                       >
                         {item.name}
                         <span className="absolute inset-0" />
@@ -113,12 +109,12 @@ export default function Example() {
             </PopoverPanel>
           </Popover>
 
-          <a
+          {/* <a
             href="#"
             className="text-sm font-semibold leading-6 text-gray-400 cursor-default"
           >
             Features
-          </a>
+          </a> */}
         </PopoverGroup>
       </nav>
       <Dialog
@@ -158,23 +154,19 @@ export default function Example() {
                         key={item.name}
                         // as="a"
                         to={item.href}
-                        className={`block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50 ${
-                          item.name === "Create Palette"
-                            ? "text-gray-400 cursor-default"
-                            : "text-gray-900"
-                        }`}
+                        className={`block rounded-lg py-2 text-gray-900 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50 `}
                       >
                         {item.name}
                       </Link>
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                <a
+                {/* <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-400 hover:bg-gray-50"
                 >
                   Features
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

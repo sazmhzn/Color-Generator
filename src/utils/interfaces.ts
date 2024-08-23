@@ -3,7 +3,7 @@ export interface Color {
   name: string;
   value: string;
   contrast: string;
-  locked: boolean;
+  locked?: boolean;
 }
 
 export interface AlertProps {

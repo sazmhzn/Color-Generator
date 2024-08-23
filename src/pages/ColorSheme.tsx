@@ -83,7 +83,10 @@ const ColorSheme = () => {
 
   return (
     <div className="p-2 px-6">
-      <Heading />
+      <Heading
+        title="Explore Palette"
+        description="Get beautiful color scheme "
+      />
 
       <div className=" mb-4">
         <ul className=" overflow-x-scroll flex gap-4 max-sm:gap-2 items-center justify-start">
