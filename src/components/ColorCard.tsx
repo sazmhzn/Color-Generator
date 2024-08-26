@@ -14,8 +14,8 @@ interface ColorCardProps {
   name: string;
   contrast?: string;
   locked?: boolean;
-  color: Color[];
-  setColor: () => void;
+  color?: Color[];
+  // setColor: () => void;
   setAlert: (message: string) => void;
   toggleLock: () => void;
   handleDelete: (color: string) => void;
@@ -28,7 +28,7 @@ const ColorCard = ({
   name,
   contrast = "#000000",
   locked = false,
-  setColor,
+  // setColor,
   color,
   setAlert,
   toggleLock,
@@ -60,7 +60,6 @@ const ColorCard = ({
           : c
       );
       setColor(updatedColors);
-      console.log(color);
     }
     setIsEditing(!isEditing);
   };

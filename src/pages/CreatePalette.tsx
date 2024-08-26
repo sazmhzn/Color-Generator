@@ -19,7 +19,20 @@ const CreatePalette = () => {
     // Call the API to get color data
     getColorByHex(inputValue)
       .then((data) => {
-        setColorData(data); // Store the fetched color data
+        console.log(data);
+        const color: Color = {
+          id: data.id || 0,
+          name: data.name.value,
+          hex: data.hex.clean,
+          contrast: data?.contrast.value,
+          value: data.name.value,
+
+          locked: data.locked || false,
+        };
+
+        setColorData(color);
+        console.log(colorData);
+        console.log(data);
         setError(""); // Clear any previous error messages
       })
       .catch((error) => {
@@ -55,17 +68,17 @@ const CreatePalette = () => {
           <div
             className="w-[10em] h-[10em] flex items-center justify-center rounded-lg font-semibold"
             style={{
-              backgroundColor: `#${colorData.hex.clean}`,
-              color: colorData?.contrast.value,
+              backgroundColor: `#${colorData.hex}`,
+              color: colorData.contrast,
             }}
           >
-            {colorData?.hex.clean}
+            {colorData?.hex}
           </div>
           <div>
             <header className="mb-4">
               <h1 className="text-4xl font-bold text-neutral-900">
                 {" "}
-                {colorData?.name.value}{" "}
+                {colorData?.name}{" "}
               </h1>
             </header>
           </div>

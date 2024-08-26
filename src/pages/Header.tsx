@@ -26,14 +26,14 @@ import { Link } from "react-router-dom";
 const products = [
   {
     name: "Explore Palette",
-    description: "Speak directly to your customers",
+    description: "Discover a variety of color palettes for your projects.",
     href: "/colorPallet",
     icon: ChartPieIcon,
   },
   {
-    name: "Search Color",
-    description: "Speak directly to your customers",
-    href: "/createPallet",
+    name: "Generate Gradient",
+    description: "Create stunning gradients effortlessly .",
+    href: "/generateGradient",
     icon: CursorArrowRaysIcon,
   },
 ];
@@ -78,7 +78,7 @@ export default function Example() {
 
             <PopoverPanel
               transition
-              className="absolute -right-10 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+              className="absolute -right-1/2 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
             >
               <div className="p-4">
                 {products.map((item) => (
