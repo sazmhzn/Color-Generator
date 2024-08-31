@@ -7,34 +7,33 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { generateColorName } from "../utils/colorUtils";
-import { Color } from "../utils/interfaces";
+import { ColorCardProps } from "../utils/interfaces";
 
-interface ColorCardProps {
-  value: string;
-  name: string;
-  contrast?: string;
-  locked?: boolean;
-  color?: Color[];
-  // setColor: () => void;
-  setAlert: (message: string) => void;
-  toggleLock: () => void;
-  handleDelete: (color: string) => void;
-  className: string;
-  // color: [];
-}
+// interface ColorCardProps {
+//   value: string;
+//   name: string;
+//   contrast?: string;
+//   locked?: boolean;
+//   color?: Color[];
+//   setColor?: (Color: Color[]) => void;
+//   setAlert: (message: string) => void;
+//   toggleLock: () => void;
+//   handleDelete: (color: string) => void;
+//   className: string;
+//   // color: [];
+// }
 
 const ColorCard = ({
-  value,
-  name,
-  contrast = "#000000",
-  locked = false,
-  // setColor,
+  setColor,
   color,
+
   setAlert,
   toggleLock,
   handleDelete,
   className,
 }: ColorCardProps) => {
+  const { value, name, contrast, locked } = color; // Destructure from color prop
+
   const [show, setShow] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [tempValue, setTempValue] = useState(value);
@@ -50,21 +49,21 @@ const ColorCard = ({
   const handleEdit = async () => {
     if (isEditing) {
       // User is saving the edit
-      const { name, contrast } = await generateColorName(
+      const { name: newName, contrast: newContrast } = await generateColorName(
         tempValue.slice(1),
         {}
       );
-      const updatedColors = color.map((c) =>
-        c.value === value
-          ? { ...c, value: tempValue.slice(), name, contrast }
+      const updatedColors = color?.map((c) =>
+        c.value === color.value
+          ? { ...c, value: tempValue, name: newName, contrast: newContrast }
           : c
       );
-      setColor(updatedColors);
+      setColor(updatedColors || []);
     }
     setIsEditing(!isEditing);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTempValue(e.target.value);
   };
 

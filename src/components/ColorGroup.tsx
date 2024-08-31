@@ -4,6 +4,7 @@ interface ColorGroupProps {
   colors: {
     color: string;
     name: string;
+    // value: string;
     contrast?: string;
     locked?: boolean;
   }[];

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 // import ColorCard from "../components/ColorCard";
 import Alert from "../components/Alert";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import Loading from "../components/Loading";
+// import Loading from "../components/Loading";
 import { Reorder } from "framer-motion";
 import ColorCard from "../components/ColorCard";
 import { CACHE_INITIAL_STATE, INITIAL_COLORS } from "../utils/constant";
@@ -17,7 +17,7 @@ import { useMediaQuery } from "../services/colorServices";
 const ColorGen = () => {
   const [color, setColor] = useState<Color[]>(INITIAL_COLORS);
   const [alert, setAlert] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const cache = CACHE_INITIAL_STATE;
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -32,11 +32,10 @@ const ColorGen = () => {
           cache
         );
         return {
-          id: color.id,
+          ...color,
           name,
           value: newColorValue,
           contrast,
-          locked: false,
         };
       })
     );
@@ -67,12 +66,10 @@ const ColorGen = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     generateColors();
-    setIsLoading(false);
   }, []);
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
 
   return (
     <section className="p-2">
@@ -90,14 +87,14 @@ const ColorGen = () => {
           >
             <ColorCard
               key={`${item.name}${item.id}`}
-              value={item.value}
-              name={item.name}
-              contrast={item.contrast}
-              locked={item.locked}
+              // value={item.value}
+              // name={item.name}
+              // contrast={item.contrast}
+              // locked={item.locked}
               setAlert={setAlert}
               toggleLock={() => setColor(toggleLock(color, index))}
-              // setColor={setColor}
-              color={color}
+              setColor={setColor}
+              color={item}
               handleDelete={handleDelete}
               className="px-4 py-8 max-sm:py-4 min-h-[75vh] max-md:py-4  max-md:min-h-[20vh]  max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end"
             />
@@ -115,11 +112,7 @@ const ColorGen = () => {
           <span> Plus </span>
         </button>
         <button
-          className="
-          cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg
-border-blue-600
-border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px]
-active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+          className=" cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
           onClick={generateColors}
           tabIndex={1}
         >

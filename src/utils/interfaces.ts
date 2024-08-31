@@ -7,6 +7,15 @@ export interface Color {
   locked?: boolean;
 }
 
+export interface ColorCardProps {
+  color: Color;
+  setColor?: (colors: Color[]) => void;
+  setAlert: (message: string) => void;
+  toggleLock: () => void;
+  handleDelete: (color: string) => void;
+  className?: string;
+}
+
 export interface AlertProps {
   alert: string;
 }
