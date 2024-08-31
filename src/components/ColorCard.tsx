@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { generateColorName } from "../utils/colorUtils";
-import { ColorCardProps } from "../utils/interfaces";
+import { Color, ColorCardProps } from "../utils/interfaces";
 
 // interface ColorCardProps {
 //   value: string;
@@ -26,7 +26,6 @@ import { ColorCardProps } from "../utils/interfaces";
 const ColorCard = ({
   setColor,
   color,
-
   setAlert,
   toggleLock,
   handleDelete,
@@ -48,17 +47,18 @@ const ColorCard = ({
 
   const handleEdit = async () => {
     if (isEditing) {
-      // User is saving the edit
+      console.log(color);
       const { name: newName, contrast: newContrast } = await generateColorName(
         tempValue.slice(1),
         {}
       );
-      const updatedColors = color?.map((c) =>
+      // @ts-ignore
+      const updatedColors = color?.map((c: Color) =>
         c.value === color.value
           ? { ...c, value: tempValue, name: newName, contrast: newContrast }
           : c
       );
-      setColor(updatedColors || []);
+      setColor(updatedColors);
     }
     setIsEditing(!isEditing);
   };

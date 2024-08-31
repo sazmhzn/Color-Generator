@@ -51,8 +51,8 @@ const GenerateGradient = () => {
     console.log(gradientValue);
   };
 
-  const [colorFrom, setColorFrom] = useState<Color>("#1677ff");
-  const [colorTo, setColorTo] = useState<Color>("#ff22ee");
+  const [colorFrom, setColorFrom] = useState<Color | undefined>(undefined);
+  const [colorTo, setColorTo] = useState<Color | undefined>(undefined);
 
   const hexFrom = useMemo<string>(
     () =>
@@ -108,7 +108,7 @@ const GenerateGradient = () => {
               </Label>
               <div className="flex items-center justify-center p-2 border-2 border-neutral-300 rounded-xl">
                 <Select
-                  defaultValue={position}
+                  defaultValue={gradientValue.position}
                   style={{ borderColor: "transparent" }}
                   // onChange={setPosition((e) => e)}
                   options={positionItems}
@@ -149,6 +149,9 @@ const GenerateGradient = () => {
               </div>
             </Field>
           </div>
+          <button className=" cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
+            Generate
+          </button>
         </div>
         <div
           style={{

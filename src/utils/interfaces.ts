@@ -1,5 +1,5 @@
 export interface Color {
-  id: number;
+  id?: number;
   name: string;
   hex?: string;
   value: string;
@@ -9,7 +9,7 @@ export interface Color {
 
 export interface ColorCardProps {
   color: Color;
-  setColor?: (colors: Color[]) => void;
+  setColor: (colors: Color[]) => void;
   setAlert: (message: string) => void;
   toggleLock: () => void;
   handleDelete: (color: string) => void;

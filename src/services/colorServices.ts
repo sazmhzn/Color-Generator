@@ -18,7 +18,7 @@ export const getColorByHex = (hex: string) => {
   });
 };
 
-export const getColorSheme = (hex: string, mode: string) => {
+export const getColorScheme = (hex: string, mode: string) => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${COLOR_SCHEME_API_ENDPOINT}${hex}&mode=${mode}`)

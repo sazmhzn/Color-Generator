@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { generateRandomColor } from "../utils/colorUtils";
-import { getColorSheme } from "../services/colorServices";
+import { getColorScheme } from "../services/colorServices";
 import { MODES } from "../utils/constant";
 import Loading from "../components/Loading";
 import Alert from "../components/Alert";
@@ -40,7 +40,7 @@ const ColorSheme = () => {
         for (let i = 0; i < 9; i++) {
           // Generating 3 different schemes
           const newColorValue = generateRandomColor();
-          const scheme = (await getColorSheme(
+          const scheme = (await getColorScheme(
             newColorValue.slice(1),
             selectedTab
           )) as ColorSheme;
