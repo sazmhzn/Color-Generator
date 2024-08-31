@@ -51,8 +51,8 @@ const GenerateGradient = () => {
     console.log(gradientValue);
   };
 
-  const [colorFrom, setColorFrom] = useState<Color | undefined>(undefined);
-  const [colorTo, setColorTo] = useState<Color | undefined>(undefined);
+  const [colorFrom, setColorFrom] = useState<Color>("#00ff33");
+  const [colorTo, setColorTo] = useState<Color>("#00ff33");
 
   const hexFrom = useMemo<string>(
     () =>
