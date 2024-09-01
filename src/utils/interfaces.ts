@@ -23,3 +23,9 @@ export interface AlertProps {
 export interface ColorSheme {
   colors: Color[];
 }
+
+export interface GradientValue {
+  position: string;
+  rotation: string;
+  type: "linear" | "radial";
+}

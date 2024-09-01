@@ -55,3 +55,21 @@ export const MODES = [
   { name: "analogic", active: false },
   { name: "complement", active: false },
 ];
+
+export const positionItems = [
+  { label: "20%", value: "20%", key: "0" },
+  { label: "40%", value: "40%", key: "1" },
+  { label: "90%", value: "90%", key: "2" },
+];
+
+export const rotationItems = [
+  { label: "20deg", value: "20deg" },
+  { label: "45deg", value: "45deg" },
+  { label: "90deg", value: "90deg" },
+  { label: "135deg", value: "135deg" },
+];
+
+export const typeItems = [
+  { label: "linear", value: "linear" },
+  { label: "radial", value: "radial" },
+];
