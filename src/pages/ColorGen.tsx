@@ -38,6 +38,24 @@ const ColorGen = () => {
     // setIsLoading(false);
   };
 
+  // const handlePlus = async () => {
+  //   const newColorValue = generateRandomColor();
+  //   const { name, contrast } = await generateColorName(
+  //     newColorValue.slice(1),
+  //     cache
+  //   );
+  //   setColor((prev) => [
+  //     ...prev,
+  //     {
+  //       id: prev.length + 1,
+  //       name,
+  //       value: newColorValue,
+  //       contrast,
+  //       locked: false,
+  //     },
+  //   ]);
+  // };
+
   const handlePlus = async () => {
     const newColorValue = generateRandomColor();
     const { name, contrast } = await generateColorName(
@@ -94,7 +112,7 @@ const ColorGen = () => {
           <Reorder.Item
             key={item.name}
             value={item}
-            className="max-md:h-[10vh] max-md:w-[100%]  flex-1"
+            className=" flex items-center max-md:h-[10vh] max-md:w-[100%]  flex-1"
           >
             <ColorCard
               key={`${item.name}${item.id}`}
@@ -108,11 +126,12 @@ const ColorGen = () => {
               setColor={setColor}
               color={item}
               handleDelete={handleDelete}
-              // dragControls={(e) => {
-              //   controls.start(e);
-              // }}
               className="px-4 py-8 max-sm:py-4 min-h-[75vh] max-md:py-4  max-md:min-h-[20vh]  max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end"
             />
+            <span onClick={handlePlus} className="hidden absolute bg-gray-600">
+              {" "}
+              +{" "}
+            </span>
           </Reorder.Item>
         ))}
       </Reorder.Group>

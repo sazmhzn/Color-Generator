@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { generateColorName } from "../utils/colorUtils";
-import { Color, ColorCardProps } from "../utils/interfaces";
+import { ColorCardProps } from "../utils/interfaces";
 
 const ColorCard = ({
   setColor,
