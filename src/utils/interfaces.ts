@@ -13,7 +13,9 @@ export interface ColorCardProps {
   setAlert: (message: string) => void;
   toggleLock: () => void;
   handleDelete: (color: string) => void;
+  // dragControls: () => void;
   className?: string;
+  onPointerDown?: (e: PointerEvent) => void;
 }
 
 export interface AlertProps {

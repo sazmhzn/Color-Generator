@@ -1,6 +1,7 @@
 import {
   DocumentDuplicateIcon,
   LockOpenIcon,
+  ArrowsRightLeftIcon,
   LockClosedIcon,
   XMarkIcon,
   PencilSquareIcon,
@@ -8,20 +9,6 @@ import {
 import { useState } from "react";
 import { generateColorName } from "../utils/colorUtils";
 import { Color, ColorCardProps } from "../utils/interfaces";
-
-// interface ColorCardProps {
-//   value: string;
-//   name: string;
-//   contrast?: string;
-//   locked?: boolean;
-//   color?: Color[];
-//   setColor?: (Color: Color[]) => void;
-//   setAlert: (message: string) => void;
-//   toggleLock: () => void;
-//   handleDelete: (color: string) => void;
-//   className: string;
-//   // color: [];
-// }
 
 const ColorCard = ({
   setColor,
@@ -47,19 +34,23 @@ const ColorCard = ({
 
   const handleEdit = async () => {
     if (isEditing) {
-      console.log(color);
+      console.log(color, "color");
+      console.log(tempValue, "tempValue");
       const { name: newName, contrast: newContrast } = await generateColorName(
         tempValue.slice(1),
         {}
       );
       // @ts-ignore
-      const updatedColors = color?.map((c: Color) =>
-        c.value === color.value
-          ? { ...c, value: tempValue, name: newName, contrast: newContrast }
-          : c
+      setColor((prevColors) =>
+        // @ts-ignore
+        prevColors.map((c) =>
+          c.value == color.value
+            ? { ...c, value: tempValue, name: newName, contrast: newContrast }
+            : c
+        )
       );
-      setColor(updatedColors);
     }
+    console.log(color);
     setIsEditing(!isEditing);
   };
 
@@ -92,6 +83,16 @@ const ColorCard = ({
         }}
         aria-hidden={!show}
       >
+        <button
+          id={value}
+          aria-label="Drag color"
+          className="focus:outline-none"
+        >
+          <ArrowsRightLeftIcon
+            aria-hidden="true"
+            className="h-6 w-6 text-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,1)]"
+          />
+        </button>
         <button
           aria-label="Delete color"
           onClick={() => handleDelete(value)}

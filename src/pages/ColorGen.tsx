@@ -6,11 +6,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { Reorder } from "framer-motion";
 import ColorCard from "../components/ColorCard";
 import { CACHE_INITIAL_STATE, INITIAL_COLORS } from "../utils/constant";
-import {
-  generateColorName,
-  generateRandomColor,
-  toggleLock,
-} from "../utils/colorUtils";
+import { generateColorName, generateRandomColor } from "../utils/colorUtils";
 import { Color } from "../utils/interfaces";
 import { useMediaQuery } from "../services/colorServices";
 
@@ -22,7 +18,6 @@ const ColorGen = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const generateColors = async () => {
-    // setIsLoading(true);
     const newColors = await Promise.all(
       color.map(async (color) => {
         if (color.locked) return color;
@@ -65,9 +60,25 @@ const ColorGen = () => {
     setColor((prev) => prev.filter((item) => item.value !== colorToDelete));
   };
 
+  // useEffect(() => {
+  //   generateColors();
+  // }, []);
+
+  // Spacebar event listener
   useEffect(() => {
-    generateColors();
-  }, []);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === "Space") {
+        e.preventDefault(); // Prevent the default spacebar scroll behavior
+        generateColors();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [color]); // Include color in dependencies to ensure the effect updates properly
 
   // if (isLoading) return <Loading />;
 
@@ -87,15 +98,19 @@ const ColorGen = () => {
           >
             <ColorCard
               key={`${item.name}${item.id}`}
-              // value={item.value}
-              // name={item.name}
-              // contrast={item.contrast}
-              // locked={item.locked}
               setAlert={setAlert}
-              toggleLock={() => setColor(toggleLock(color, index))}
+              // toggleLock={() => setColor(toggleLock(color, index))}
+              toggleLock={() => {
+                const newColor = [...color];
+                newColor[index].locked = !newColor[index].locked;
+                setColor(newColor);
+              }}
               setColor={setColor}
               color={item}
               handleDelete={handleDelete}
+              // dragControls={(e) => {
+              //   controls.start(e);
+              // }}
               className="px-4 py-8 max-sm:py-4 min-h-[75vh] max-md:py-4  max-md:min-h-[20vh]  max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end"
             />
           </Reorder.Item>
