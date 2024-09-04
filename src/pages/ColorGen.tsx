@@ -101,18 +101,26 @@ const ColorGen = () => {
   // if (isLoading) return <Loading />;
 
   return (
-    <section className="p-2">
+    <section className="px-2">
+      {/* <button
+        className="flex items-center justify-start gap-1 cursor-pointer transition-all bg-blue-200 text-blue-600 px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:brightness-90"
+        onClick={handlePlus}
+        tabIndex={-1}
+      >
+        <PlusCircleIcon className=" w-6 h-6 hover:rotate-90 duration-300" />
+        <span> Plus </span>
+      </button> */}
       <Reorder.Group
         axis={isMobile ? "y" : "x"}
         values={color}
         onReorder={setColor}
-        className="flex max-md:flex-col items-center flex-wrap mb-4 gap-0"
+        className="relative flex min-h-[83vh] max-md:flex-col items-center flex-wrap mb-4 gap-0"
       >
         {color.map((item, index) => (
           <Reorder.Item
             key={item.name}
             value={item}
-            className=" flex items-center max-md:h-[10vh] max-md:w-[100%]  flex-1"
+            className=" flex-2 max-md:h-[10vh] max-md:w-[100%] flex-1"
           >
             <ColorCard
               key={`${item.name}${item.id}`}
@@ -126,17 +134,19 @@ const ColorGen = () => {
               setColor={setColor}
               color={item}
               handleDelete={handleDelete}
-              className="px-4 py-8 max-sm:py-4 min-h-[75vh] max-md:py-4  max-md:min-h-[20vh]  max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end"
+              className="px-4 py-8 max-sm:py-4 min-h-[88vh] max-md:py-4 max-md:min-h-[20vh]  max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end"
             />
-            <span onClick={handlePlus} className="hidden absolute bg-gray-600">
-              {" "}
-              +{" "}
-            </span>
           </Reorder.Item>
         ))}
+        <span
+          onClick={handlePlus}
+          className="absolute top-50 right-0 min-h-[80vh] flex items-center bg-neutral-200"
+        >
+          <PlusCircleIcon className=" w-6 h-6 hover:rotate-90 duration-300" />
+        </span>
       </Reorder.Group>
 
-      <div className="flex gap-4 justify-center">
+      {/* <div className="flex gap-4 justify-center">
         <button
           className="flex items-center justify-start gap-1 cursor-pointer transition-all bg-blue-200 text-blue-600 px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:brightness-90"
           onClick={handlePlus}
@@ -152,7 +162,7 @@ const ColorGen = () => {
         >
           Generate
         </button>
-      </div>
+      </div> */}
       {alert && <Alert alert={alert} />}
     </section>
   );
