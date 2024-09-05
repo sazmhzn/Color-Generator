@@ -7,6 +7,7 @@ import { positionItems, rotationItems, typeItems } from "../utils/constant";
 import { GradientValue } from "../utils/interfaces";
 import { generateRandomColor } from "../utils/colorUtils";
 import Alert from "../components/Alert";
+import GradientGroup from "../components/GradientGroup";
 
 const GenerateGradient = () => {
   // const [inputValue, setInputValue] = useState<number[]>([0, 100]);
@@ -66,7 +67,7 @@ const GenerateGradient = () => {
     <section className="">
       <Heading title="Gradient Create" description="Create gradients" />
 
-      <div className="flex items-center justify-center gap-4 max-md:flex-col-reverse ">
+      <div className="min-h-[50vh] flex items-start justify-center gap-4 max-md:flex-col-reverse ">
         <div className="flex flex-col w-[40%] items-center justify-center gap-4  max-md:w-[70%]">
           <div className=" w-full">
             {/* <div className="bg-red-200 rounded w-full h-6"></div> */}
@@ -154,7 +155,7 @@ const GenerateGradient = () => {
               Generate
             </button>
             <button
-              className=" cursor-pointer transition-all  text-blue-600 px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+              className="flex items-center justify-start gap-1 cursor-pointer transition-all bg-blue-200 text-blue-600 px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:brightness-90"
               onClick={handleCopy}
             >
               Copy CSS
@@ -171,6 +172,12 @@ const GenerateGradient = () => {
           }}
           className={` h-72 w-72 rounded-md`}
         ></div>
+      </div>
+
+      <div className="min-h-screen  w-100">
+        <Heading title="Explore Create" description="Explore gradients" />
+
+        <GradientGroup setAlert={setAlert} />
       </div>
       {alert && <Alert alert={alert} />}
     </section>
