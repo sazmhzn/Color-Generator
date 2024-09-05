@@ -120,7 +120,7 @@ const ColorGen = () => {
           <Reorder.Item
             key={item.name}
             value={item}
-            className=" flex-2 max-md:h-[10vh] max-md:w-[100%] flex-1"
+            className="relative flex-2 max-md:h-[10vh] max-md:w-[100%] flex-1 group"
           >
             <ColorCard
               key={`${item.name}${item.id}`}
@@ -136,33 +136,37 @@ const ColorGen = () => {
               handleDelete={handleDelete}
               className="px-4 py-8 max-sm:py-4 min-h-[88vh] max-md:py-4 max-md:min-h-[20vh]  max-sm:min-h-[16vh] w-full flex-1 flex flex-col items-center justify-end"
             />
+            <div
+              onClick={handlePlus}
+              className="absolute top-0 h-full w-2 min-h-[80vh] items-center justify-center bg-neutral-100 hidden group-hover:flex"
+            >
+              <span className="bg-neutral-100 p-2 rounded-2xl">
+                <PlusCircleIcon className=" w-6 h-6 hover:rotate-90 duration-300" />
+              </span>
+            </div>
           </Reorder.Item>
         ))}
-        <span
-          onClick={handlePlus}
-          className="absolute top-50 right-0 min-h-[80vh] flex items-center bg-neutral-200"
-        >
-          <PlusCircleIcon className=" w-6 h-6 hover:rotate-90 duration-300" />
-        </span>
       </Reorder.Group>
 
-      {/* <div className="flex gap-4 justify-center">
-        <button
-          className="flex items-center justify-start gap-1 cursor-pointer transition-all bg-blue-200 text-blue-600 px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:brightness-90"
-          onClick={handlePlus}
-          tabIndex={-1}
-        >
-          <PlusCircleIcon className=" w-6 h-6 hover:rotate-90 duration-300" />
-          <span> Plus </span>
-        </button>
-        <button
-          className=" cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
-          onClick={generateColors}
-          tabIndex={1}
-        >
-          Generate
-        </button>
-      </div> */}
+      {isMobile && (
+        <div className="flex gap-4 justify-center">
+          <button
+            className="flex items-center justify-start gap-1 cursor-pointer transition-all bg-blue-200 text-blue-600 px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:brightness-90"
+            onClick={handlePlus}
+            tabIndex={-1}
+          >
+            <PlusCircleIcon className=" w-6 h-6 hover:rotate-90 duration-300" />
+            <span> Plus </span>
+          </button>
+          <button
+            className=" cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+            onClick={generateColors}
+            tabIndex={1}
+          >
+            Generate
+          </button>
+        </div>
+      )}
       {alert && <Alert alert={alert} />}
     </section>
   );
